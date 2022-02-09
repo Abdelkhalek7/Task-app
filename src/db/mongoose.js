@@ -8,4 +8,4 @@ mongoose.connect(process.env.MONGOCONNECT,{
 
     
 })
-
+//mongodb+srv://yourtask:task123@cluster0.taf3j.mongodb.net/task-manger-api?retryWrites=true&w=majority

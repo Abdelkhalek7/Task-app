@@ -33,6 +33,9 @@ router.get("/tasks/:id", auth, async (req, res) => {
     res.send(e);
   }
 });
+router.get("/tasks", auth, async (req, res) => {
+  res.status(200).send("done")
+});
 ////tasks?completed=true&title=name&sortBy=createdAt:desc&limt=3&skip=3
 router.get("/tasks", auth, async (req, res) => {
   const match = {};
