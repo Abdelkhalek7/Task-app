@@ -8,17 +8,16 @@ const router = new express.Router();
 
 const multer = require("multer");  //to upload files
 const upload = multer({
-
   limits: {
-    size: 10000000,
-  },
-  fileFilter(req, file, cb) {
+    fileSize: 1000000
+},
+fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-      return cb(new Error("filed to upload file"));
+        return cb(new Error('Please upload an image'))
     }
-    cb(undefined, true);
-  },
-});
+
+    cb(undefined, true)
+}})
 router.post("/user/me/avater",auth,upload.single("upload"), async (req, res) => {
     const buffer=await sharp(req.file.buffer).resize({width:250, height:250}).png().toBuffer()
    req.user.avater= buffer
@@ -77,7 +76,7 @@ router.post("/logoutall", auth, async (req, res) => {
   }
 });
 
-router.get("/users/me", auth, async (req, res) => {
+router.get("/users/me", auth,(req, res) => {
   res.send(req.user);
 });
 router.get("/users/:id", async (req, res) => {
