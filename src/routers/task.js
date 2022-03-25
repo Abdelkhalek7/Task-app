@@ -21,7 +21,7 @@ router.post("/tasks", auth, async (req, res) => {
 router.get("/tasks/:id", auth, async (req, res) => {
   const _id = req.params.id;
   try {
-    // const tasks = await Tasks.findById(_id);
+   //const tasks = await Tasks.findById(_id);
     const tasks = await Tasks.findOne({ _id, owner: req.user._id });
 
     if (!tasks) {

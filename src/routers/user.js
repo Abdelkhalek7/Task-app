@@ -115,11 +115,13 @@ router.patch("/users/me", auth, async (req, res) => {
 });
 router.delete("/users/me", auth, async (req, res) => {
   try {
-    await req.user.remove();
+    console.log(req.user)
+     req.user.remove();
+
     res.send(req.user);
   } catch (e) {
-    res.status(400);
-    res.send("can not delete");
+    res.status(401);
+    res.send("can not delete"+e);
   }
 });
 router.delete("/users/me/avater", auth, async (req, res) => {
